@@ -1,6 +1,7 @@
 import express from "express";
 import  {configDotenv}  from "dotenv";
-import authRoutes from "./Routes/auth.js";
+import authRoutes from "./routes/auth.js";
+import messageRoutes from "./routes/messageRoutes.js";
 import mongoConnect from "./db/mongoConnect.js";
 
 configDotenv();
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.listen(port, () => {
     mongoConnect();
