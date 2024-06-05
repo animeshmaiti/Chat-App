@@ -1,9 +1,12 @@
 import express from "express";
 import  {configDotenv}  from "dotenv";
+import cookieParser from "cookie-parser";
+
 import authRoutes from "./routes/auth.js";
 import messageRoutes from "./routes/messageRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+
 import mongoConnect from "./db/mongoConnect.js";
-import cookieParser from "cookie-parser";
 
 configDotenv();
 const app = express();
@@ -18,6 +21,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(port, () => {
     mongoConnect();
