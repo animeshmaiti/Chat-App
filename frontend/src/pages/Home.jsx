@@ -1,6 +1,6 @@
 import React from "react";
-import { SideBar } from "../components/SideBar";
-import { MessageContainer } from "../components/MessageContainer";
+import { SideBar } from "../components/Sidebar/SideBar";
+import { MessageContainer } from "../components/Messages/MessageContainer";
 
 export const Home = () => {
   return (
