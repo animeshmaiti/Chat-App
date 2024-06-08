@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSignup } from "../components/hooks/useSignup";
 
 export const SignUp = () => {
-  const{signup}=useSignup();
+  const{loading,signup}=useSignup();
   
   const [input, setInput] = useState({
     fullName: "",
@@ -104,7 +104,7 @@ export const SignUp = () => {
             </div>
             <div className="form-control">
               <label className="label gap-2 cursor-pointer">
-                <span className="label-text">Male</span>
+                <span className="label-text">Female</span>
                 <input
                   type="checkbox"
                   className="checkbox border-slate-900"
@@ -116,8 +116,10 @@ export const SignUp = () => {
             </div>
           </div>
           <div>
-            <button className="btn btn-block btn-sm mt-2 max-w-xs">
-              Create Account
+            <button className="btn btn-block btn-sm mt-2 max-w-xs"
+              disabled={loading}
+            >
+              {loading ? (<span className="loading loading-spinner"></span>) : "Create Account"}
             </button>
           </div>
           {"Already have an account? "}
