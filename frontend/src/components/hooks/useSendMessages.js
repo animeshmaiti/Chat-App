@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 export const useSendMessages = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
-  console.log(selectedConversation._id);
   const sendMessage = async (message) => {
     setLoading(true);
     try {
