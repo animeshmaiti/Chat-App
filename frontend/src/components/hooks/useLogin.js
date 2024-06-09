@@ -15,7 +15,6 @@ export const useLogin = () => {
     const login = async (inputData) => {
         const success = handleInputError(inputData);
         if (!success) return;
-        console.log(inputData);
         setLoading(true);
 
         try {
