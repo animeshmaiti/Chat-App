@@ -7,9 +7,10 @@ import messageRoutes from "./routes/messageRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 
 import mongoConnect from "./db/mongoConnect.js";
+import { app, server } from "./socket/socket.js";
 
 configDotenv();
-const app = express();
+// const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
@@ -23,7 +24,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.listen(port, () => {
+server.listen(port, () => {
     mongoConnect();
     console.log(`Server is running on port http://localhost:${port}/`);
 });
