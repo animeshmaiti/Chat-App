@@ -1,13 +1,13 @@
 import {useState} from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import useConversation from "../hooks/useConversation";
-import { useGetConversations } from "../hooks/useGetConversations";
+import { useGetAllUsers} from "../hooks/useGetConversations";
 import toast from "react-hot-toast";
 
 export const SearchInput = () => {
   const [search, setSearch] = useState("");
   const {setSelectedConversation}=useConversation();
-  const {conversations}=useGetConversations();
+  const {users}=useGetAllUsers();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,9 +15,9 @@ export const SearchInput = () => {
     if (search.length <3 ) {
       return toast.error("Search query must be at least 3 characters long");
     }
-    const conversation = conversations.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
-    if (conversation) {
-      setSelectedConversation(conversation);
+    const user = users.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
+    if (user) {
+      setSelectedConversation(user);
       setSearch("");
     }else{
       toast.error("No user found with that name");

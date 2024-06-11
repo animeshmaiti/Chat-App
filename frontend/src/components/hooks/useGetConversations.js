@@ -8,7 +8,7 @@ export const useGetConversations = () => {
         const getConversations = async () => {
             setLoading(true);
             try {
-                const response = await fetch("/api/users");
+                const response = await fetch("/api/users/conversations");
                 const data = await response.json();
                 if (!response.ok) {
                     throw new Error(data.error);
@@ -24,5 +24,30 @@ export const useGetConversations = () => {
         getConversations();
     }, []);
     return { loading, conversations};
+}
+
+export const useGetAllUsers = () => {
+    const [loading, setLoading] = useState(false);
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        const getUsers = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch("/api/users");
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error);
+                }
+                setUsers(data);
+            } catch (error) {
+                toast.error(error.message || "An error occurred");
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        getUsers();
+    }, []);
+    return { loading, users};
 }
 
