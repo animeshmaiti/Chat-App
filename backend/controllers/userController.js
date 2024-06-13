@@ -20,12 +20,6 @@ export const getUsersForSidebar = async (req, res) => {
             participants: { $in: [loggedInUserId]}
         }).populate('participants') // populate with required fields from User schema
 
-        // "_id": "665de427231d4b890da01444",
-        // "fullName": "Bob",
-        // "username": "bob",
-        // "password": "$2a$10$s7S0UybifL8KLUmaFytqjuo4vSZbnD5s03ITwoFkelEw8d8ZnQ0fa",
-        // "gender": "male",
-        // "profilePic": "https://img.icons8.com/?size=96&id=23241&format=png&color=000000",
         const filteredConversations = conversations.map(conversation => {
             const receiver = conversation.participants.filter(participant => participant._id.toString() !== loggedInUserId.toString());
             return {
@@ -37,8 +31,8 @@ export const getUsersForSidebar = async (req, res) => {
             };
 
         });
-        // res.status(200).json(filteredConversations);
         res.status(200).json(filteredConversations);
+        return filteredConversations;
     } catch (error) {
         console.error('Error retrieving conversations:', error);
         throw error;

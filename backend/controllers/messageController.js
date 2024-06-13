@@ -1,6 +1,13 @@
 import Conversation from "../models/conversation.js";
 import Message from "../models/message.js";
+import User from "../models/user.js";
 import { getReceiverSocketId, io } from "../socket/socket.js";
+
+const getReceiverData = async (receiverId) => {
+    const receiver = await User.findOne({ _id: receiverId }).select("-password");
+    console.log(receiver)
+    return receiver;
+};
 
 export const sendMessage = async (req, res) => {
     try {
@@ -12,11 +19,14 @@ export const sendMessage = async (req, res) => {
             participants: { $all: [senderId, receiverId] }
         })
 
+        const isNewConversation = !conversation;
+        
         if (!conversation) {
             conversation = await Conversation.create({
                 participants: [senderId, receiverId]
             })
         }
+
 
         const newMessage = new Message({
             senderId,
@@ -34,7 +44,18 @@ export const sendMessage = async (req, res) => {
         //socketIo
         const receiverSocketId = getReceiverSocketId(receiverId);
         if (receiverSocketId) {
-           io.to(receiverSocketId).emit("newMessage", newMessage);
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+        }
+
+        if (isNewConversation) {
+            // Emit the filtered conversation data
+            const participantsSocketIds = [senderId, receiverId].map(id => getReceiverSocketId(id)).filter(id => id);
+
+            const filteredData = await getReceiverData(receiverId);
+
+            participantsSocketIds.forEach(socketId => {
+                io.to(socketId).emit("conversationUpdated", filteredData);
+            });
         }
 
         res.status(201).json(newMessage);
