@@ -1,4 +1,3 @@
-import React from "react";
 import { SideBar } from "../components/Sidebar/SideBar";
 import { MessageContainer } from "../components/Messages/MessageContainer";
 
