@@ -1,5 +1,5 @@
 # Chat App  Main Doc
-This app is a simple chat app that allows users to chat with each other in real time. It is built using Node.js, Express, and Socket.io. The app is deployed on Heroku and can be accessed [here](http://3.110.154.116:3000). This app is deployed in AWS EC2 with docker and self-hosted service in gitHub this doc will give the all steps and command to do the same.provided the repo of front end and back end of the app. In the document you will see the necessary changes to be done in the code to make it work in your local machine or in the server.
+This app is a simple chat app that allows users to chat with each other in real time. It is built using Node.js, Express, and Socket.io. This app is deployed in AWS EC2 with docker and self-hosted service in gitHub this doc will give the all steps and command to do the same.provided the repo of front end and back end of the app. In the document you will see the necessary changes to be done in the code to make it work in your local machine or in the server.
 
 ### You can follow the steps to deploy the chat app. And take reference from the code in the [backend repo](https://github.com/animeshmaiti/ChatAppBackend) and [frontend repo](https://github.com/animeshmaiti/ChatAppFrontend).
 
