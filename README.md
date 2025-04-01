@@ -84,7 +84,9 @@ CMD ["npm", "start"]
 6. Go to the actions tab in the github repo and you will see the workflow is running.
 7. After the workflow is completed you can see the docker image is pushed to the dockerHub.
 8. you can see the necessary changes in the code to make it work in your local machine or in the server.In the [backend repo](https://github.com/animeshmaiti/ChatAppBackend).
-9. in my case i usually just add cors in the backend code to make it work in the server.
+9. in my case i usually just add cors in the backend code to make it work in the server.<br>
+**Note:** this `frontendURL` is the url of the frontend app that you will deploy in the EC2 instance. you can change it as per your requirement. This allows the frontend app to access the backend API.
+
 `index.js`
 ```javascript
 import { configDotenv } from "dotenv";
