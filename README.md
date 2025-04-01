@@ -41,7 +41,7 @@ docker --version
 2. Click on the actions and then click on the runners.
 3. create new self-hosted runner.
 4. we are using linux runner so select linux and follow the instructions written there(download and configure).<br>
-   note: mkdir actions-runner && cd actions-runner you can change the directory name as you want. all the prompt after running command you can press enter to go with default.
+   note: `mkdir actions-runner && cd actions-runner` you can change the directory name as you want. all the prompt after running command you can press enter to go with default.
 5. you can run the runner by running the following command.
 ```bash
 ./run.sh
